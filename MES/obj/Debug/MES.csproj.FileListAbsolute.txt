@@ -1,1 +1,9 @@
 C:\Projects\MES\MES\bin\Debug\MES.exe.config
+C:\Projects\MES\MES\bin\Debug\MES.exe
+C:\Projects\MES\MES\bin\Debug\MES.pdb
+C:\Projects\MES\MES\obj\Debug\MES.csprojResolveAssemblyReference.cache
+C:\Projects\MES\MES\obj\Debug\MES.Form1.resources
+C:\Projects\MES\MES\obj\Debug\MES.Properties.Resources.resources
+C:\Projects\MES\MES\obj\Debug\MES.csproj.GenerateResource.Cache
+C:\Projects\MES\MES\obj\Debug\MES.exe
+C:\Projects\MES\MES\obj\Debug\MES.pdb

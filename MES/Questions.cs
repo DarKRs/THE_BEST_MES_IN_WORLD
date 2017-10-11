@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace MES
 {
-    public class Object
+   public class Questions
     {
-        public Dictionary<int, Questions> Questins;
-        public string Name;
-        public double pConst;
+       public double pPlus;
+       public double pMinus;
     }
 }
