@@ -1,0 +1,1 @@
+C:\Projects\MES\MES\bin\Debug\MES.exe.config
