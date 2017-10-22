@@ -12,9 +12,9 @@ namespace MES
 {
     class Parser
     {
-        string Autor;
-        string Objects;
-        string Questions;
+       public string Autor;
+       public Object[] Objects;
+       public string Questions;
 
         public void ParseFile(string path)
         {
@@ -41,9 +41,9 @@ namespace MES
                 string[] Quest = AQO[1].Split(':');
                 this.Autor = AQO[0];
                 this.Questions = Quest[1];
-                this.Objects = AQO[2];
+                this.Objects = parseObjects(AQO[2]);
                 reader.Close();
-                parseObjects(AQO[2]);
+                
            }
             catch (Exception ex)
             {
@@ -52,19 +52,22 @@ namespace MES
             }
         }
 
-        public void parseObjects(string AQO)
+        public Object[] parseObjects(string AQO)
         {
 
             string[] Obj1 = AQO.Split('\t');
-            Object[] Objectss = new Object[200];
-            for (int i=0; i < 200; i++)
-            {
-                Objectss[i] = new Object();
-            }
+           
+           
             int o = 0;
 
                 string[] Obj = Obj1[0].Split('\r');
-                for (int i = 1; i < Obj.Length; i++)
+                 Object[] Objectss = new Object[Obj.Length-1];
+            for (int i = 0; i < Obj.Length-1; i++)
+            {
+                Objectss[i] = new Object();
+            }
+            
+            for (int i = 1; i < Obj.Length; i++)
                 {
                     
                     string[] Objec = Obj[i].Split(',');
@@ -87,7 +90,7 @@ namespace MES
                     }
                     o++;
                 }
-
+            return Objectss;
         }
     }
 }

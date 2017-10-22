@@ -13,5 +13,10 @@ namespace MES
         public Dictionary<int, Questions> Questins = new Dictionary<int, Questions>();
         public string Name;
         public double pConst;
+        public double pCurrent;
+        public Object()
+        {
+            pCurrent = pConst;
+        }
     }
 }
