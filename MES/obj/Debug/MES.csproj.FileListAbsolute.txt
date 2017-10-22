@@ -7,3 +7,12 @@ C:\Projects\MES\MES\obj\Debug\MES.Properties.Resources.resources
 C:\Projects\MES\MES\obj\Debug\MES.csproj.GenerateResource.Cache
 C:\Projects\MES\MES\obj\Debug\MES.exe
 C:\Projects\MES\MES\obj\Debug\MES.pdb
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\bin\Debug\MES.exe.config
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\obj\Debug\MES.exe
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\obj\Debug\MES.pdb
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\bin\Debug\MES.exe
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\bin\Debug\MES.pdb
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\obj\Debug\MES.csprojResolveAssemblyReference.cache
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\obj\Debug\MES.Form1.resources
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\obj\Debug\MES.Properties.Resources.resources
+C:\GitHub\jom\THE_BEST_MES_IN_WORLD\MES\obj\Debug\MES.csproj.GenerateResource.Cache

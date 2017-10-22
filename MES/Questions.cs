@@ -10,5 +10,11 @@ namespace MES
     {
        public double pPlus;
        public double pMinus;
+
+        public Questions(double pPlus1,double pMinus1)
+        {
+            this.pPlus = pPlus1;
+            this.pMinus = pMinus1;
+        }
     }
 }
