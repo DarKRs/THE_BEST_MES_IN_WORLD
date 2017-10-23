@@ -30,6 +30,7 @@ namespace MES
             PrintObjects(parser.Objects);
             QuestionsTextBox.Text = parser.Questions;
             AutorTextBox.Text = parser.Autor;
+            Go.Enabled = true;
         }
 
         void PrintObjects(Object[] obj)
@@ -44,6 +45,7 @@ namespace MES
 
         private void Go_Click(object sender, EventArgs e)
         {
+            Reload();
             Next.Enabled = true;
             string[] Quest = parser.Questions.Split('\r');
             DynamicTextBox.Text = Quest[1];
@@ -51,18 +53,70 @@ namespace MES
 
         private void Next_Click(object sender, EventArgs e)
         {
+            string[] Quest = parser.Questions.Split('\r');
+            if (Q+1 == Quest.Length-1)
+            {
+                MessageBox.Show("Закончились вопросы",
+               "ВОПРОСОВ НЕТ!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Next.Enabled = false;
+                return;
+            }
             Q++;
             if (Otvet.Text == "")
             {
                 MessageBox.Show("Впишите свой ответ от -5 до +5",
                 "Все очень плохо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            for(int i = 0; i < parser.Objects.Length; i++)
+            int Otv = Convert.ToInt32(Otvet.Text);
+            if (Otv == 5)
             {
-                parser.Objects[i].pCurrent += parser.Objects[i].Questins[Q].pPlus;
+                for (int i = 0; i < parser.Objects.Length; i++)
+                {
+                    parser.Objects[i].pCurrent = (parser.Objects[i].Questins[Q].pPlus * parser.Objects[i].pCurrent) / ((parser.Objects[i].Questins[Q].pPlus * parser.Objects[i].pCurrent) + (parser.Objects[i].Questins[Q].pMinus * (1 - parser.Objects[i].pCurrent))) ;
+                }
             }
-            
+            if (Otv == -5)
+            {
+                for (int i = 0; i < parser.Objects.Length; i++)
+                {
+                    parser.Objects[i].pCurrent = ((1 - parser.Objects[i].Questins[Q].pPlus) * parser.Objects[i].pCurrent) / ((1 - parser.Objects[i].Questins[Q].pPlus) * parser.Objects[i].pCurrent) - (parser.Objects[i].Questins[Q].pMinus * (1 - parser.Objects[i].pCurrent));
+                }
+            }
+            if(Otv >=  -5 && Otv <= 0)
+            {
+                for (int i = 0; i < parser.Objects.Length; i++)
+                {
+                    parser.Objects[i].pCurrent = (((Otv + 5) * (parser.Objects[i].pCurrent - parser.Objects[i].Questins[Q].pMinus)) / 5) + parser.Objects[i].Questins[Q].pMinus;
+                }
+            }
+            if (Otv >= 0 && Otv <= 5)
+            {
+                for (int i = 0; i < parser.Objects.Length; i++)
+                {
+                    parser.Objects[i].pCurrent = (((Otv - 0) * (parser.Objects[i].Questins[Q].pPlus - parser.Objects[i].pCurrent)) / 5) + parser.Objects[i].pCurrent;
+                }
+            }
+
+            ModifyCurrentQuest();
+            ModifyQuest();
             ModifyObjects();
+        }
+
+        void Reload()
+        {
+            string Objects = "";
+            for (int i = 0; i < parser.Objects.Length; i++)
+            {
+                parser.Objects[i].pCurrent = parser.Objects[i].pConst;
+            }
+            for (int i = 0; i < parser.Objects.Length; i++)
+            {
+                Objects += parser.Objects[i].Name + "[" + parser.Objects[i].pConst + "]" + "\n";
+            }
+            ObjectTextBox.Text = Objects;
+            QuestionsTextBox.Text = parser.Questions;
+            AutorTextBox.Text = parser.Autor;
         }
 
         void ModifyObjects()
@@ -70,9 +124,30 @@ namespace MES
             string Objects = "";
             for (int i = 0; i < parser.Objects.Length; i++)
             {
+                if(parser.Objects[i].pCurrent == 0)
+                {
+                    i++;
+                }
                 Objects += parser.Objects[i].Name + "[" + parser.Objects[i].pCurrent + "]" + "\n";
             }
             ObjectTextBox.Text = Objects;
+        }
+
+        void ModifyCurrentQuest()
+        {
+            string[] Quest = parser.Questions.Split('\r');
+            DynamicTextBox.Text = Quest[1 + Q];
+           
+        }
+
+        void ModifyQuest()
+        {
+            QuestionsTextBox.Clear();
+            string[] Quest = parser.Questions.Split('\r');
+            for (int i = 2 + Q; i < Quest.Length; i++)
+            {
+                QuestionsTextBox.Text += Quest[i] + "\n";
+            }
         }
 
     }

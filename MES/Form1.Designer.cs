@@ -52,15 +52,15 @@
             // 
             this.ObjectTextBox.Location = new System.Drawing.Point(12, 75);
             this.ObjectTextBox.Name = "ObjectTextBox";
-            this.ObjectTextBox.Size = new System.Drawing.Size(176, 260);
+            this.ObjectTextBox.Size = new System.Drawing.Size(205, 260);
             this.ObjectTextBox.TabIndex = 1;
             this.ObjectTextBox.Text = "";
             // 
             // DynamicTextBox
             // 
-            this.DynamicTextBox.Location = new System.Drawing.Point(194, 75);
+            this.DynamicTextBox.Location = new System.Drawing.Point(223, 75);
             this.DynamicTextBox.Name = "DynamicTextBox";
-            this.DynamicTextBox.Size = new System.Drawing.Size(384, 214);
+            this.DynamicTextBox.Size = new System.Drawing.Size(355, 214);
             this.DynamicTextBox.TabIndex = 2;
             this.DynamicTextBox.Text = "";
             // 
@@ -88,10 +88,10 @@
             // 
             // FonText
             // 
-            this.FonText.Location = new System.Drawing.Point(195, 296);
+            this.FonText.Location = new System.Drawing.Point(223, 296);
             this.FonText.Name = "FonText";
             this.FonText.ReadOnly = true;
-            this.FonText.Size = new System.Drawing.Size(383, 39);
+            this.FonText.Size = new System.Drawing.Size(355, 39);
             this.FonText.TabIndex = 5;
             this.FonText.Text = "";
             // 
@@ -105,6 +105,7 @@
             // 
             // Go
             // 
+            this.Go.Enabled = false;
             this.Go.Location = new System.Drawing.Point(409, 398);
             this.Go.Name = "Go";
             this.Go.Size = new System.Drawing.Size(169, 33);
