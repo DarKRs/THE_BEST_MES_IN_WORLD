@@ -23,6 +23,10 @@ namespace MES
 
         private void OpenFileButton_Click(object sender, EventArgs e)
         {
+            QuestionsTextBox.Clear();
+            AutorTextBox.Clear();
+            ObjectTextBox.Clear();
+            DynamicTextBox.Clear();
             openFile.ShowDialog();
             string path = openFile.FileName;
 
@@ -78,14 +82,14 @@ namespace MES
                     parser.Objects[i].pCurrent = ((1 - parser.Objects[i].Questins[Q].pPlus) * parser.Objects[i].pCurrent) / ((1 - parser.Objects[i].Questins[Q].pPlus) * parser.Objects[i].pCurrent) - (parser.Objects[i].Questins[Q].pMinus * (1 - parser.Objects[i].pCurrent));
                 }
             }
-            if(Otv >=  -5 && Otv < 0)
+            if(Otv >  -5 && Otv < 0)
             {
                 for (int i = 0; i < parser.Objects.Length; i++)
                 {
                     parser.Objects[i].pCurrent = (((Otv + 5) * (parser.Objects[i].pCurrent - parser.Objects[i].Questins[Q].pMinus)) / 5) + parser.Objects[i].Questins[Q].pMinus;
                 }
             }
-            if (Otv > 0 && Otv <= 5)
+            if (Otv > 0 && Otv < 5)
             {
                 for (int i = 0; i < parser.Objects.Length; i++)
                 {
@@ -131,13 +135,16 @@ namespace MES
         void ModifyObjects()
         {
             string Objects = "";
-            for (int i = 0; i < parser.Objects.Length; i++)
+            for (int i = 0; i < parser.Objects.Count(); i++)
             {
-                if(parser.Objects[i].pCurrent == 0)
+                if (parser.Objects[i].pCurrent == 0)
                 {
-                    i++;
+                    Objects += "//" + parser.Objects[i].Name + "[" + parser.Objects[i].pCurrent + "]" + "\n";
                 }
-                Objects += parser.Objects[i].Name + "[" + parser.Objects[i].pCurrent + "]" + "\n";
+                else
+                {
+                    Objects += parser.Objects[i].Name + "[" + parser.Objects[i].pCurrent + "]" + "\n";
+                }
             }
             ObjectTextBox.Text = Objects;
         }
