@@ -48,7 +48,7 @@ namespace MES
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message,
-                "Все очень плохо", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                "Все очень плохо", MessageBoxButtons.OK, MessageBoxIcon.Information); return;
             }
         }
 

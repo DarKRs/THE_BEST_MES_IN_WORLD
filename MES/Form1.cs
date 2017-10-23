@@ -25,8 +25,9 @@ namespace MES
         {
             openFile.ShowDialog();
             string path = openFile.FileName;
-           
+
             parser.ParseFile(path);
+        
             PrintObjects(parser.Objects);
             QuestionsTextBox.Text = parser.Questions;
             AutorTextBox.Text = parser.Autor;
@@ -54,13 +55,7 @@ namespace MES
         private void Next_Click(object sender, EventArgs e)
         {
             string[] Quest = parser.Questions.Split('\r');
-            if (Q+1 == Quest.Length-1)
-            {
-                MessageBox.Show("Закончились вопросы",
-               "ВОПРОСОВ НЕТ!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Next.Enabled = false;
-                return;
-            }
+            
             Q++;
             if (Otvet.Text == "")
             {
@@ -83,24 +78,38 @@ namespace MES
                     parser.Objects[i].pCurrent = ((1 - parser.Objects[i].Questins[Q].pPlus) * parser.Objects[i].pCurrent) / ((1 - parser.Objects[i].Questins[Q].pPlus) * parser.Objects[i].pCurrent) - (parser.Objects[i].Questins[Q].pMinus * (1 - parser.Objects[i].pCurrent));
                 }
             }
-            if(Otv >=  -5 && Otv <= 0)
+            if(Otv >=  -5 && Otv < 0)
             {
                 for (int i = 0; i < parser.Objects.Length; i++)
                 {
                     parser.Objects[i].pCurrent = (((Otv + 5) * (parser.Objects[i].pCurrent - parser.Objects[i].Questins[Q].pMinus)) / 5) + parser.Objects[i].Questins[Q].pMinus;
                 }
             }
-            if (Otv >= 0 && Otv <= 5)
+            if (Otv > 0 && Otv <= 5)
             {
                 for (int i = 0; i < parser.Objects.Length; i++)
                 {
                     parser.Objects[i].pCurrent = (((Otv - 0) * (parser.Objects[i].Questins[Q].pPlus - parser.Objects[i].pCurrent)) / 5) + parser.Objects[i].pCurrent;
                 }
             }
+            if (Otv == 0)
+            {
+                for(int i = 0; i < parser.Objects.Length; i++)
+                {
+                    parser.Objects[i].pCurrent = parser.Objects[i].pCurrent;
+                }
+            }
 
             ModifyCurrentQuest();
             ModifyQuest();
             ModifyObjects();
+            if (Q + 1 == Quest.Length - 1)
+            {
+                MessageBox.Show("Закончились вопросы",
+               "ВОПРОСОВ НЕТ!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Next.Enabled = false;
+                return;
+            }
         }
 
         void Reload()
